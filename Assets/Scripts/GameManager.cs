@@ -6,20 +6,16 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject canvas;
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        canvas.SetActive(false);
+        GameObject.Find("ScoreInGame").SetActive(true);
     }
 
     public void GameOver()
     {
-
+        GameObject.Find("ScoreInGame").SetActive(false);
         canvas.SetActive(true);
         Time.timeScale = 0;
     }
@@ -27,6 +23,7 @@ public class GameManager : MonoBehaviour
     public void Replay()
     {
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Flappy");
     }
+
 }
