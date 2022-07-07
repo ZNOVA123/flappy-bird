@@ -18,21 +18,18 @@ public class PipeScript : MonoBehaviour
     //GameObject originalGameObject = GameObject.Find("Pipe");
     void GapSetter(float gap)
     {
-        
-       // GameObject child1 = originalGameObject.transform.GetChild(0).gameObject;
-        //GameObject child2 = originalGameObject.transform.GetChild(1).gameObject;
-        
-        //child1.transform.position += new Vector3(pozx, pozy + gap, -1);
-        //child1.transform.position += new Vector3(pozx, pozy - gap, -1);
+        transform.GetChild(0).position = new Vector3(pozx1, pozy1 - gap, -1);
+        transform.GetChild(1).position = new Vector3(pozx2, pozy2 + gap, -1);
     } 
 
-    private static float pozx1, pozy1;
+    private static float pozx1, pozy1, pozx2, pozy2;
     void Start()
     {
-        //GameObject child1 = originalGameObject.transform.GetChild(0).gameObject;
-        //GameObject child2 = originalGameObject.transform.GetChild(1).gameObject;
-        //child1.GetComponent<Transform>().position.
-       // GapSetter(gap);
+        pozx1 = transform.GetChild(0).position.x;
+        pozy1 = transform.GetChild(0).position.y;
+        pozx2 = transform.GetChild(1).position.x;
+        pozy2 = transform.GetChild(1).position.y;
+        GapSetter(gap);
     }
 
     void Update()
