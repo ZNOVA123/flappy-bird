@@ -4,33 +4,39 @@ using UnityEngine;
 
 public class PipeScript : MonoBehaviour
 {
-    public float gap;
-    public int sus_sau_jos;
+    public float gap, speed;
     void GameOver()
     {
-
+        Debug.Log("S-a atins");
+        
     }
     void OnTriggerEnter2D(Collider2D bird)
     {
         if (bird.name == "Bird")
             GameOver();
     }
-
-    void GapSetter(float gap, int sus_sau_jos)
+    //GameObject originalGameObject = GameObject.Find("Pipe");
+    void GapSetter(float gap)
     {
-        transform.position = new Vector3(pozx, pozy + (gap * sus_sau_jos), -1);
+        
+       // GameObject child1 = originalGameObject.transform.GetChild(0).gameObject;
+        //GameObject child2 = originalGameObject.transform.GetChild(1).gameObject;
+        
+        //child1.transform.position += new Vector3(pozx, pozy + gap, -1);
+        //child1.transform.position += new Vector3(pozx, pozy - gap, -1);
     } 
 
-    private float pozx, pozy;
+    private static float pozx1, pozy1;
     void Start()
     {
-        pozx = GetComponent<Transform>().position.x;
-        pozy = GetComponent<Transform>().position.y;
-        GapSetter(gap, sus_sau_jos);
+        //GameObject child1 = originalGameObject.transform.GetChild(0).gameObject;
+        //GameObject child2 = originalGameObject.transform.GetChild(1).gameObject;
+        //child1.GetComponent<Transform>().position.
+       // GapSetter(gap);
     }
 
     void Update()
     {
-        
+        transform.position += Vector3.left * speed * Time.deltaTime;
     }
 }
