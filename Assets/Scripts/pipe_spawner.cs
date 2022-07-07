@@ -6,13 +6,14 @@ public class pipe_spawner : MonoBehaviour
 {
     public float maxtime = 1;
     public GameObject pipe;
-    public float height;
+    public float low = 0;
+    public float high = 5;
     private float timer = 0;
 
     void Start()
     {
         GameObject newpipe = Instantiate(pipe);
-        newpipe.transform.position = transform.position + new Vector3(0, Random.Range(-height, height), 0);
+        newpipe.transform.position = transform.position + new Vector3(0, Random.Range(low, high), 0);
     }
 
     // Update is called once per frame
@@ -21,8 +22,9 @@ public class pipe_spawner : MonoBehaviour
         if(timer > maxtime)
         {
             GameObject newpipe = Instantiate(pipe);
-            newpipe.transform.position = transform.position + new Vector3(0, Random.Range(-height, height), 0);
+            newpipe.transform.position = transform.position + new Vector3(0, Random.Range(low, high), 0);
             Destroy(newpipe, 15);
+            timer = 0;
 
         }
         timer += Time.deltaTime;

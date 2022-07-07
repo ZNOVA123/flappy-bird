@@ -8,6 +8,7 @@ public class bird_animation : MonoBehaviour
     public int framesPerSecond;
     public float velocity;
     public Rigidbody2D rb;
+    public GameManager gameManager;
 
     private SpriteRenderer spriteRenderer;
     private int currentSpriteIndex;
@@ -31,9 +32,9 @@ public class bird_animation : MonoBehaviour
             rb.velocity = Vector2.up * velocity;
         }
 
-        float rotation = rb.velocity.y * 0.1f;
+        float rotation = rb.velocity.y * 0.07f;
         if (transform.rotation.z > 0.18f && rotation > 0) rotation = 0;
-        else if (transform.rotation.z < -0.7f && rotation < 0) rotation = 0;
+        else if (transform.rotation.z < -0.5f && rotation < 0) rotation = 0;
         transform.Rotate(0, 0, rotation, Space.Self);
 
         if (timer >= 1.0f / framesPerSecond)
@@ -48,5 +49,10 @@ public class bird_animation : MonoBehaviour
     private void RotateDown()
     {
         transform.Rotate(Vector3.forward * 90);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        gameManager.GameOver();
     }
 }
