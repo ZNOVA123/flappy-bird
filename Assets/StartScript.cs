@@ -8,4 +8,12 @@ public class StartScript : MonoBehaviour
     {
         SceneManager.LoadScene("SampleScene");
     }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            PressStart();
+        }
+    }
 }

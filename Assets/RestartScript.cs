@@ -14,4 +14,11 @@ public class RestartScript : MonoBehaviour
     {
         PressRestart();
     }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            PressRestart();
+        }
+    }
 }
