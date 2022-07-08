@@ -6,7 +6,7 @@ public class StartScript : MonoBehaviour
 {
     public void PressStart()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("ChooseMenu");
     }
 
     void Update()
