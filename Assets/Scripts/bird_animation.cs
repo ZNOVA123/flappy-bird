@@ -10,6 +10,7 @@ public class bird_animation : MonoBehaviour
     public bool isRotate;
     public Rigidbody2D rb;
     public GameManager gameManager;
+    public AudioSource sound;
 
     private SpriteRenderer spriteRenderer;
     private int currentSpriteIndex;
@@ -68,17 +69,43 @@ public class bird_animation : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision2D)
     {
-        
-        if(collision2D.collider.tag == "Hair")
+        if (collision2D.gameObject.tag == "Score") return;
+
+        if (collision2D.gameObject.tag == "Ground")
         {
+            gameManager.GameOver();
+        }
+
+        if (collision2D.collider.tag == "Hair")
+        {
+            AudioSource copy = Instantiate(sound);
+            copy.Play();
             transform.GetChild(0).gameObject.SetActive(true);
+            GetComponent<Collider2D>().isTrigger = true;
             Destroy(collision2D.gameObject);
         }
         else
         {
-            transform.GetChild(0).gameObject.SetActive(false);
-            gameManager.GameOver();
+            if(isRotate == false)
+            {
+                if (!transform.GetChild(0).gameObject.activeInHierarchy)
+                {
+                    transform.GetChild(0).gameObject.SetActive(false);
+                    gameManager.GameOver();
+                }
+            } else
+            {
+                gameManager.GameOver();
+            }
+            
         }
             
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Score") return;
+        transform.GetChild(0).gameObject.SetActive(false);
+        GetComponent<Collider2D>().isTrigger = false; 
+        Destroy(collision.gameObject);
     }
 }

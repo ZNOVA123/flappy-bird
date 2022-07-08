@@ -777,6 +777,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2115335409571205571, guid: 0f0b21b1a0714614490b2641e3a34c19, type: 3}
+      propertyPath: isRotate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115335409571205571, guid: 0f0b21b1a0714614490b2641e3a34c19, type: 3}
       propertyPath: velocity
       value: 4.6
       objectReference: {fileID: 0}
