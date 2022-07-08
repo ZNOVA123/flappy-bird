@@ -17,10 +17,13 @@ public class bird_animation : MonoBehaviour
 
     void Start()
     {
+        transform.GetChild(0).gameObject.SetActive(false);
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentSpriteIndex = 0;
         spriteRenderer.sprite = sprites[currentSpriteIndex];
         rb = GetComponent<Rigidbody2D>();
+        if(isRotate == false)
+            rb.freezeRotation = true;
     }
 
     private void Update()
@@ -45,8 +48,9 @@ public class bird_animation : MonoBehaviour
 
             transform.Rotate(0, 0, rotation, Space.Self);
         }
-        
-        
+
+
+
 
         if (timer >= 1.0f / framesPerSecond)
         {
@@ -62,8 +66,19 @@ public class bird_animation : MonoBehaviour
         transform.Rotate(Vector3.forward * 90);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision2D)
     {
-        gameManager.GameOver();
+        
+        if(collision2D.collider.tag == "Hair")
+        {
+            transform.GetChild(0).gameObject.SetActive(true);
+            Destroy(collision2D.gameObject);
+        }
+        else
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
+            gameManager.GameOver();
+        }
+            
     }
 }
