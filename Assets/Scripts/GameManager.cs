@@ -7,19 +7,20 @@ public class GameManager : MonoBehaviour
 {
     public GameObject canvas;
     public static bool ok = false;
+    public static int heighscore = 0;
 
     private void Start()
     {
         Time.timeScale = 1;
+        ok = false;
         canvas.SetActive(false);
         GameObject.Find("ScoreInGame").SetActive(true);
-        ok = false;
     }
 
     public void GameOver()
     {
-        ok = true;
         GameObject.Find("ScoreInGame").SetActive(false);
+        ok = true;
         canvas.SetActive(true);
         Time.timeScale = 0;
 
