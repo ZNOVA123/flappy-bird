@@ -5,29 +5,30 @@ using UnityEngine;
 
 public class NewScore : MonoBehaviour
 {
-    public static int heighscore = 0;
-    private TMP_Text text;
+    
+    private TMP_Text text1;
     // Update is called once per frame
 
     void Start()
     {
-        text = GetComponent<TMP_Text>();
+        text1 = GetComponent<TMP_Text>();
     }
 
     void Update()
     {
         if(GameManager.ok == true)
         {
-            if (heighscore < Score.score)
+            if (GameManager.heighscore < Score.score)
             {
-                text.text = "new score:" + Score.score.ToString();
-                heighscore = Score.score;
+                text1.text = "New Highscore : " + Score.score.ToString();
+                GameManager.heighscore = Score.score;
             }
             else
             {
-                text.text = Score.score.ToString();
+                text1.text = "Highscore : " + Score.score.ToString(); ;
             }
             GameManager.ok = false;
         }
+        
     }
 }
